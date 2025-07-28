@@ -1,16 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-const RemoteWelcome = await import("welcome/Welcome");
+import AppRoutes from "./routes";
 
 function App() {
-  const Welcome = RemoteWelcome.default;
-
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
