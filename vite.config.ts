@@ -11,8 +11,7 @@ export default defineConfig({
       name: "host",
       remotes: {
         welcome: "http://localhost:4173/assets/remoteEntry.js",
-        // clientManagement: 'http://localhost:3002/assets/remoteEntry.js',
-        // clientSelection: 'http://localhost:3003/assets/remoteEntry.js',
+        clients: 'http://localhost:4174/assets/remoteEntry.js',
       },
       shared: ["react", "react-dom"],
     }),

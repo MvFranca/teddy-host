@@ -1,13 +1,29 @@
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
-import ClientesPage from "../ui/pages/ClientesPage";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import WelcomeRoute from "../ui/pages/welcome/RemoteWelcome";
 import Layout from "../ui/layout";
+import ClientsRoute from "../ui/components/clients/RemoteClients";
+import SelectClientsRoute from "../ui/components/clients/RemoteSelectClients";
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<WelcomeRoute />} />
+        <Route path="/" element={<WelcomeRoute />} /> // sem Layout, sem Header
+        <Route
+          element={
+            <Layout>
+              <Outlet />
+            </Layout>
+          }
+        >
+          <Route path="/clientes" element={<ClientsRoute />} />
+        </Route>
 
         <Route
           element={
@@ -16,7 +32,7 @@ const AppRoutes = () => {
             </Layout>
           }
         >
-          <Route path="/clientes" element={<ClientesPage />} />
+          <Route path="/clientes-selecionados" element={<SelectClientsRoute />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />

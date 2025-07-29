@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+.nav {
+  display: none;
+  gap: 2.063rem; 
+  align-items: center;
+}
+
+@media (min-width: 750px) {
+  .nav {
+    display: flex;
+  }
+}   
