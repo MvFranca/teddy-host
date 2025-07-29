@@ -1,9 +1,12 @@
 import clsx from "clsx";
 import { useUIStore } from "../../store/uiStore";
+import { sidebarItems } from "../../mocks/sidebarItems";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const isOpen = useUIStore((state) => state.isSidebarOpen);
   const closeSidebar = useUIStore((state) => state.closeSidebar);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -20,7 +23,7 @@ const Sidebar = () => {
 
       <aside
         className={clsx(
-          "fixed top-0  left-0 h-full w-64 z-50 shadow-lg transform transition-transform duration-300",
+          "fixed top-0 left-0 h-full w-64 z-50 shadow-lg transform transition-transform duration-300",
           {
             "translate-x-0": isOpen,
             "translate-x-[calc(-100%-30px)]": !isOpen,
@@ -31,6 +34,7 @@ const Sidebar = () => {
           <div className="flex items-center gap-2 h-32 max-h-32 w-full justify-center backdrop-blur bg-white/10">
             <img src="./logo.svg" width={100} height={48.98} alt="Teddy Logo" />
           </div>
+
           <button
             onClick={closeSidebar}
             className={clsx(
@@ -42,19 +46,21 @@ const Sidebar = () => {
           >
             <img src="./sidebar/arrow.svg" width={13} height={13} />
           </button>
-          <ul className="space-y-2 w-full h-full  bg-white pt-12 pb-4">
-            <li className=" hover:text-orange-500 cursor-pointer h-11 flex justify-start items-center gap-4 px-6 font-medium">
-              <img src="./sidebar/home.svg" />
-              Home
-            </li>
-            <li className=" hover:text-orange-500 cursor-pointer h-11 flex justify-start items-center gap-4 px-6 font-medium">
-              <img src="./sidebar/clients.svg" />
-              Clientes
-            </li>
-            <li className=" hover:text-orange-500 cursor-pointer h-11 flex justify-start items-center gap-4 px-6 font-medium">
-              <img src="./sidebar/clientsSelected.svg" />
-              Clientes Selecionados
-            </li>
+
+          <ul className="space-y-2 w-full h-full bg-white pt-12 pb-4">
+            {sidebarItems.map((item) => (
+              <li
+                key={item.label}
+                className="hover:text-orange-500 cursor-pointer h-11 flex justify-start items-center gap-4 px-6 font-medium"
+                onClick={() => {
+                  navigate(item.href);
+                  closeSidebar();
+                }}
+              >
+                <img src={item.icon} />
+                {item.label}
+              </li>
+            ))}
           </ul>
         </div>
       </aside>

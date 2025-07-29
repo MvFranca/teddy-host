@@ -6,10 +6,7 @@ const Header = () => {
   const toggleSidebar = useUIStore((state) => state.toggleSidebar);
 
   return (
-    <header
-      className="bg-white border-b border-gray-200 sm:px-[50px] h-[100px] flex justify-between items-center px-4"
-      style={{ boxShadow: "0px 2px 2px 0px rgba(0, 0, 0, 0.1)" }}
-    >
+    <header className="bg-white border-b border-gray-200 px-12 h-[100px] flex justify-between items-center">
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-6">
           <button onClick={toggleSidebar} className="cursor-pointer">
