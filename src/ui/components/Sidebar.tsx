@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import { useUIStore } from "../../store/uiStore";
+import { NavLink } from "react-router-dom";
+
 import { sidebarItems } from "../../mocks/sidebarItems";
-import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const isOpen = useUIStore((state) => state.isSidebarOpen);
   const closeSidebar = useUIStore((state) => state.closeSidebar);
-  const navigate = useNavigate();
 
   return (
     <>
@@ -48,19 +48,32 @@ const Sidebar = () => {
           </button>
 
           <ul className="space-y-2 w-full h-full bg-white pt-12 pb-4">
-            {sidebarItems.map((item) => (
-              <li
-                key={item.label}
-                className="hover:text-orange-500 cursor-pointer h-11 flex justify-start items-center gap-4 px-6 font-medium"
-                onClick={() => {
-                  navigate(item.href);
-                  closeSidebar();
-                }}
-              >
-                <img src={item.icon} />
-                {item.label}
-              </li>
-            ))}
+            {sidebarItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <li key={item.label}>
+                  <NavLink
+                    to={item.href}
+                    onClick={closeSidebar}
+                    className={({ isActive }) =>
+                      clsx(
+                        "h-11 flex items-center gap-4 px-6 font-medium transition-colors",
+                        {
+                          "text-orange-500 border-r-4 border-orange-500 bg-orange-50":
+                            isActive,
+                          "hover:text-orange-500": !isActive,
+                        }
+                      )
+                    }
+                  >
+                    <Icon className="text-xl" />{" "}
+                    {/* aqui usamos o componente */}
+                    {item.label}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </aside>
