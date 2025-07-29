@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUserStore } from "../../store/userStore";
+import { useUserStore } from "../../../store/userStore";
 
 const RemoteWelcome = await import("welcome/Welcome");
 
