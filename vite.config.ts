@@ -10,9 +10,8 @@ export default defineConfig({
     federation({
       name: "host",
       remotes: {
-        welcome: "http://localhost:4173/assets/remoteEntry.js",
-        // clientManagement: 'http://localhost:3002/assets/remoteEntry.js',
-        // clientSelection: 'http://localhost:3003/assets/remoteEntry.js',
+        welcome: "https://teddy-welcome.vercel.app/assets/remoteEntry.js",
+        clients: 'https://teddy-clients.vercel.app/assets/remoteEntry.js',
       },
       shared: ["react", "react-dom"],
     }),
