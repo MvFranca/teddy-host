@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useUserStore } from "../../store/userStore";
 import { useUIStore } from "../../store/uiStore";
 
@@ -24,6 +24,7 @@ const Header = () => {
         className="max-w-[1200px] flex-1 mx-auto flex justify-between items-center"
         style={{ transform: "translateX(-40px)" }}
       >
+        <Link to={'/clientes'}>
         <img
           src="./logo.svg"
           width={100}
@@ -31,6 +32,7 @@ const Header = () => {
           alt="Teddy Logo"
           className="mr-6"
         />
+        </Link>
         <nav className="nav items-center">
           <NavLink
             to="/clientes"
